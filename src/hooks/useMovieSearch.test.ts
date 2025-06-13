@@ -9,7 +9,7 @@ vi.mock('../services/tmdbApi', () => ({
   useSearchMoviesQuery: vi.fn()
 }))
 
-const mockUseSearchMoviesQuery = useSearchMoviesQuery as any
+const mockUseSearchMoviesQuery = useSearchMoviesQuery as vi.MockedFunction<typeof useSearchMoviesQuery>
 
 describe('useMovieSearch Hook', () => {
   beforeEach(() => {
