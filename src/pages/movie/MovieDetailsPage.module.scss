@@ -1,7 +1,7 @@
 @use '../../scss/utils/placeholders';
 
 .modalContent {
-  min-height: 400px;
-  max-height: 90vh;
+  min-width: min(800px, 90vw);;
+  min-height: min(900px, 90vh);
   overflow-y: auto;
 }
