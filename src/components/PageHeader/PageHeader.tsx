@@ -16,16 +16,19 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   className
 }) => {
   return (
-    <header className={`${styles.pageHeader} ${className || ''}`}>
-      <div className={styles.headerContent}>
-        <div className={styles.headerInfo}>
-          <h1 className={styles.title}>{title}</h1>
+    <header 
+      className={`${styles.pageHeader} ${className || ''}`}
+      data-testid="page-header"
+    >
+      <div className={styles.headerContent} data-testid="header-content">
+        <div className={styles.headerInfo} data-testid="header-info">
+          <h1 className={styles.title} data-testid="page-title">{title}</h1>
           {subtitle && (
-            <p className={styles.subtitle}>{subtitle}</p>
+            <p className={styles.subtitle} data-testid="page-subtitle">{subtitle}</p>
           )}
         </div>
         {actions && (
-          <div className={styles.headerActions}>
+          <div className={styles.headerActions} data-testid="header-actions">
             {actions}
           </div>
         )}

@@ -14,13 +14,21 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   className,
 }) => {
   return (
-    <div className={`${styles.spinnerContainer} ${className || ''}`}>
+    <div 
+      className={`${styles.spinnerContainer} ${className || ''}`}
+      data-testid="loading-spinner-container"
+    >
       <div 
         className={`${styles.spinner} ${styles[size]}`} 
-        aria-label="Ładowanie" 
+        aria-label="Ładowanie"
+        data-testid="loading-spinner"
+        data-size={size}
       />
       {message && (
-        <span className="text text--secondary text--sm">
+        <span 
+          className="text text--secondary text--sm"
+          data-testid="loading-message"
+        >
           {message}
         </span>
       )}
