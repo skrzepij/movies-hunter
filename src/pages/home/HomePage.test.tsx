@@ -212,16 +212,6 @@ vi.mock('../../hooks/useApiPagination', () => ({
   }))
 }));
 
-vi.mock('../../hooks/useMovieModal', () => ({
-  useMovieModal: vi.fn(() => ({
-    selectedMovieId: null,
-    movieDetails: null,
-    isModalOpen: false,
-    openMovieDetails: vi.fn(),
-    closeMovieDetails: vi.fn(),
-  }))
-}));
-
 vi.mock('../../hooks/useMovieCategories', () => {
   const mockMovies = {
     popular: [

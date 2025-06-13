@@ -6,7 +6,6 @@ export interface ApiResponse<T> {
   total_results: number
 }
 
-// Movie related types
 export interface Movie {
   id: number
   title: string
@@ -69,10 +68,8 @@ export interface SpokenLanguage {
   name: string
 }
 
-// Search related types
 export type SearchMoviesResponse = ApiResponse<Movie>
 
-// Favorites types
 export interface FavoriteMovie {
   id: number
   title: string
@@ -82,7 +79,6 @@ export interface FavoriteMovie {
   addedAt: string
 }
 
-// API Error types - More precise error handling
 export interface ApiError {
   status_code: number
   status_message: string
@@ -95,35 +91,10 @@ export interface RTKQueryError {
   data?: ApiError
 }
 
-// App state types with better precision
-export interface LoadingState {
-  isLoading: boolean
-  error: string | null
-}
-
-export interface PaginationState {
-  page: number
-  totalPages: number
-  totalResults: number
-}
-
-// Utility types for better type safety
-export type MovieId = number
+// Utility types for better type safety and IDE support
 export type Rating = number // 0-10 scale from TMDb
-export type Year = number
-export type DateString = string // ISO date string
+export type DateString = string // ISO date string format
+export type MovieId = number
 
-// Image size types for better type safety
-export type PosterSize = 'w92' | 'w154' | 'w185' | 'w342' | 'w500' | 'w780' | 'original'
-export type BackdropSize = 'w300' | 'w780' | 'w1280' | 'original'
-
-// Language and country codes with more specific constraints
-export type LanguageCode = `${string}-${string}` // ISO 639-1 codes like 'en-US', 'pl-PL'
-export type CountryCode = string // ISO 3166-1 codes like 'US', 'PL'
-
-// More precise Movie interface with utility types
-export interface MovieWithPreciseTypes extends Omit<Movie, 'id' | 'vote_average' | 'release_date'> {
-  id: MovieId
-  vote_average: Rating
-  release_date: DateString
-}
+// Re-export image size types from config for convenience
+export type { PosterSizeValue, BackdropSizeValue } from '../utils/config'

@@ -2,6 +2,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 
 import styles from './App.module.scss'
+import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary'
 import { Header } from './components/Header/Header'
 import { FavoritesPage } from './pages/favorites/FavoritesPage'
 import { HomePage } from './pages/home/HomePage'
@@ -43,16 +44,18 @@ function AppRoutes() {
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <div className={styles.appContainer}>
-          <Header />
-          <main className={styles.mainContent}>
-            <AppRoutes />
-          </main>
-        </div>
-      </Router>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Router>
+          <div className={styles.appContainer}>
+            <Header />
+            <main className={styles.mainContent}>
+              <AppRoutes />
+            </main>
+          </div>
+        </Router>
+      </Provider>
+    </ErrorBoundary>
   )
 }
 

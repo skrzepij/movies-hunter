@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
 
 import styles from './MovieDetailsPage.module.scss'
