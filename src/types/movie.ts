@@ -1,0 +1,129 @@
+// Base API response types
+export interface ApiResponse<T> {
+  page: number
+  results: T[]
+  total_pages: number
+  total_results: number
+}
+
+// Movie related types
+export interface Movie {
+  id: number
+  title: string
+  overview: string
+  poster_path: string | null
+  backdrop_path: string | null
+  release_date: string
+  vote_average: number
+  vote_count: number
+  popularity: number
+  adult: boolean
+  genre_ids: number[]
+  original_language: string
+  original_title: string
+  video: boolean
+}
+
+export interface MovieDetails extends Movie {
+  belongs_to_collection: Collection | null
+  budget: number
+  genres: Genre[]
+  homepage: string
+  imdb_id: string
+  production_companies: ProductionCompany[]
+  production_countries: ProductionCountry[]
+  revenue: number
+  runtime: number
+  spoken_languages: SpokenLanguage[]
+  status: string
+  tagline: string
+}
+
+export interface Genre {
+  id: number
+  name: string
+}
+
+export interface Collection {
+  id: number
+  name: string
+  poster_path: string | null
+  backdrop_path: string | null
+}
+
+export interface ProductionCompany {
+  id: number
+  logo_path: string | null
+  name: string
+  origin_country: string
+}
+
+export interface ProductionCountry {
+  iso_3166_1: string
+  name: string
+}
+
+export interface SpokenLanguage {
+  english_name: string
+  iso_639_1: string
+  name: string
+}
+
+// Search related types
+export type SearchMoviesResponse = ApiResponse<Movie>
+
+// Favorites types
+export interface FavoriteMovie {
+  id: number
+  title: string
+  poster_path: string | null
+  release_date: string
+  vote_average: number
+  addedAt: string
+}
+
+// API Error types - More precise error handling
+export interface ApiError {
+  status_code: number
+  status_message: string
+  success: false
+}
+
+export interface RTKQueryError {
+  status: number | 'FETCH_ERROR' | 'PARSING_ERROR' | 'TIMEOUT_ERROR' | 'CUSTOM_ERROR'
+  error?: string
+  data?: ApiError
+}
+
+// App state types with better precision
+export interface LoadingState {
+  isLoading: boolean
+  error: string | null
+}
+
+export interface PaginationState {
+  page: number
+  totalPages: number
+  totalResults: number
+}
+
+// Utility types for better type safety
+export type MovieId = number
+export type Rating = number // 0-10 scale from TMDb
+export type Year = number
+export type DateString = string // ISO date string
+
+// Image size types for better type safety
+export type PosterSize = 'w92' | 'w154' | 'w185' | 'w342' | 'w500' | 'w780' | 'original'
+export type BackdropSize = 'w300' | 'w780' | 'w1280' | 'original'
+
+// Language and country codes with more specific constraints
+export type LanguageCode = `${string}-${string}` // ISO 639-1 codes like 'en-US', 'pl-PL'
+export type CountryCode = string // ISO 3166-1 codes like 'US', 'PL'
+
+// More precise Movie interface with utility types
+export interface MovieWithPreciseTypes extends Omit<Movie, 'id' | 'vote_average' | 'release_date'> {
+  id: MovieId
+  vote_average: Rating
+  release_date: DateString
+}

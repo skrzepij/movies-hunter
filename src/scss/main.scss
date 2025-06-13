@@ -1,0 +1,20 @@
+@use 'base/variables' as var;
+@use 'base/reset';
+@use 'components/typography';
+@use 'components/buttons';
+
+// =============================================================================
+// Global HTML font-size 
+// =============================================================================
+
+html {
+  font-size: 14px;
+  
+  @media (min-width: var.$tablet) {
+    font-size: 16px;
+  }
+  
+  @media (min-width: var.$large) {
+    font-size: 17px;
+  }
+}

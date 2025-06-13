@@ -1,0 +1,116 @@
+@use '../../scss/utils/mixins' as mix;
+
+.detailsContainer {
+  padding: var(--spacing-xl);
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.flexContainer {
+  display: flex;
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.moviePoster {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  margin: 0 auto;
+}
+
+.movieInfo {
+  flex: 1;
+  min-width: 300px;
+}
+
+.movieHeader {
+  margin-bottom: var(--spacing-lg);
+}
+
+.tagline {
+  font-style: italic;
+  margin-top: var(--spacing-xs);
+}
+
+.metaInfo {
+  display: flex;
+  margin: var(--spacing-md) 0;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.metaItemFullWidth {
+  @extend .metaItem;
+  flex: 1 0 100%;
+  justify-content: space-between;
+}
+
+.genresSection {
+  margin: var(--spacing-md) 0;
+}
+
+.genresLabel {
+  margin-bottom: var(--spacing-xs);
+}
+
+.genresList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.genreTag {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.overviewSection {
+  margin: var(--spacing-lg) 0;
+}
+
+.overviewTitle {
+  margin-bottom: var(--spacing-md);
+}
+
+.overview {
+  line-height: 1.6;
+}
+
+.actionButtons {
+  display: flex;
+  margin-top: var(--spacing-xl);
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.backdropSection {
+  margin-top: var(--spacing-xl);
+}
+
+.backdropImage {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}

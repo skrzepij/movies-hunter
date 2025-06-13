@@ -1,0 +1,45 @@
+@use '../../scss/utils/mixins' as mix;
+
+.spinnerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  min-height: 200px;
+}
+
+.spinner {
+  border: 3px solid var(--border-light);
+  border-top: 3px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  
+  &.sm {
+    width: 20px;
+    height: 20px;
+    border-width: 2px;
+  }
+  
+  &.md {
+    width: 32px;
+    height: 32px;
+    border-width: 3px;
+  }
+  
+  &.lg {
+    width: 48px;
+    height: 48px;
+    border-width: 4px;
+  }
+}
+
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+}

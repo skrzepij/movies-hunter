@@ -1,0 +1,35 @@
+@use '../../scss/utils/placeholders';
+@use '../../scss/base/variables' as vars;
+
+.gridContainer {
+  width: 100%;
+}
+
+.movieGrid {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  
+  @media (min-width: vars.$mobile) {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    justify-items: stretch;
+  }
+  
+  @media (min-width: vars.$tablet) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+.emptyState {
+  @extend %flex-column-center;
+  padding: var(--spacing-2xl);
+  text-align: center;
+  min-height: 300px;
+}
+
+.emptyIcon {
+  font-size: var(--font-4xl);
+  margin-bottom: var(--spacing-md);
+}

@@ -1,0 +1,58 @@
+@use '../../scss/utils/placeholders';
+@use '../../scss/base/variables' as vars;
+
+.searchContainer {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+}
+
+.searchInput {
+  @extend %button-base;
+  width: 100%;
+  font-size: var(--font-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  padding-right: 3.125rem;
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  
+  &::placeholder {
+    color: var(--text-muted);
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+}
+
+.clearButton {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  @extend %flex-center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  
+  &:hover {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+  }
+}

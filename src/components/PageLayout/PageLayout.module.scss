@@ -1,0 +1,12 @@
+@use '../../scss/base/variables' as vars;
+@use '../../scss/utils/placeholders';
+
+.pageContainer {
+  min-height: calc(100vh - var(--header-height, 80px));
+  padding: var(--spacing-xl) 0;
+}
+
+.pageContent {
+  @extend %container;
+  width: 100%;
+}
