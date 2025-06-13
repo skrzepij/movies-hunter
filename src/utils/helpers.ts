@@ -1,16 +1,13 @@
 import { TMDB_CONFIG, IMAGE_SIZES } from './config'
 
-import type { PosterSize, BackdropSize, DateString, Rating } from '../types/movie'
+import type { Rating, DateString, PosterSizeValue, BackdropSizeValue } from '../types/movie'
 
 /**
  * Builds the complete image URL for TMDb images
- * @param path - Image path from TMDb API (can be null)
- * @param size - Image size specification
- * @returns Complete image URL or placeholder
  */
 export const buildImageUrl = (
-  path: string | null,
-  size: PosterSize | BackdropSize = IMAGE_SIZES.POSTER.MEDIUM
+  path: string | null, 
+  size: PosterSizeValue | BackdropSizeValue = IMAGE_SIZES.POSTER.MEDIUM
 ): string => {
   if (!path) {
     return '/placeholder-movie.svg'
@@ -20,10 +17,8 @@ export const buildImageUrl = (
 
 /**
  * Formats date string to readable format
- * @param dateString - ISO date string from API
- * @returns Formatted date string or 'Unknown' for invalid dates
  */
-export const formatDate = (dateString: DateString | string): string => {
+export const formatDate = (dateString: DateString): string => {
   if (!dateString) return 'Nieznana'
   
   try {
@@ -43,8 +38,6 @@ export const formatDate = (dateString: DateString | string): string => {
 
 /**
  * Formats movie runtime to hours and minutes
- * @param minutes - Runtime in minutes (must be positive)
- * @returns Formatted runtime string
  */
 export const formatRuntime = (minutes: number | null | undefined): string => {
   if (!minutes || minutes <= 0) return 'Nieznany'
@@ -65,8 +58,6 @@ export const formatRuntime = (minutes: number | null | undefined): string => {
 
 /**
  * Formats vote average to one decimal place
- * @param voteAverage - Rating from 0-10 scale
- * @returns Formatted rating string
  */
 export const formatVoteAverage = (voteAverage: Rating): string => {
   if (voteAverage < 0 || voteAverage > 10) {
@@ -77,8 +68,6 @@ export const formatVoteAverage = (voteAverage: Rating): string => {
 
 /**
  * Formats currency values in USD
- * @param amount - Amount to format (must be positive)
- * @returns Formatted currency string
  */
 export const formatCurrency = (amount: number | null | undefined): string => {
   if (!amount || amount <= 0) return 'Nieznany'
@@ -92,6 +81,14 @@ export const formatCurrency = (amount: number | null | undefined): string => {
 }
 
 /**
- * Alias for buildImageUrl for easier use in components
+ * Builds full image URL for backdrop or poster
  */
-export const getFullImageUrl = buildImageUrl
+export const getFullImageUrl = (
+  path: string | null, 
+  size: PosterSizeValue | BackdropSizeValue = 'w500'
+): string => {
+  if (!path) {
+    return '/placeholder-movie.svg'
+  }
+  return `${TMDB_CONFIG.IMAGE_BASE_URL}/${size}${path}`
+}
