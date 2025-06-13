@@ -9,6 +9,11 @@
   box-shadow: var(--shadow-md);
 }
 
+.pageVariant {
+  max-width: 1200px;
+  padding: var(--spacing-2xl);
+}
+
 .flexContainer {
   display: flex;
   gap: var(--spacing-xl);

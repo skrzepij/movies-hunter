@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 
+import { useNavigate, useLocation } from 'react-router-dom'
+
 import styles from './FavoritesPage.module.scss'
 import { Button } from '../../components/Button/Button'
 import { ConfirmationModal } from '../../components/ConfirmationModal/ConfirmationModal'
-import { Modal } from '../../components/Modal/Modal'
-import { MovieDetails } from '../../components/MovieDetails/MovieDetails'
 import { MovieGrid } from '../../components/MovieGrid/MovieGrid'
 import { PageHeader } from '../../components/PageHeader/PageHeader'
 import { PageLayout } from '../../components/PageLayout/PageLayout'
 import { Pagination } from '../../components/Pagination/Pagination'
 import { useClientPagination } from '../../hooks/useClientPagination'
 import { useFavoritesManager } from '../../hooks/useFavorites'
-import { useMovieModal } from '../../hooks/useMovieModal'
 
 import type { Movie, FavoriteMovie } from '../../types/movie'
 
@@ -20,17 +19,11 @@ interface FavoritesPageProps {
 }
 
 export const FavoritesPage: React.FC<FavoritesPageProps> = ({ onMovieClick }) => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const { favorites, toggleMovieFavorite, clearAllFavorites } = useFavoritesManager()
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
   
-  const {
-    selectedMovieId,
-    movieDetails,
-    isModalOpen,
-    openMovieDetails,
-    closeMovieDetails,
-  } = useMovieModal()
-
   const convertToMovie = (favorite: FavoriteMovie): Movie => ({
     id: favorite.id,
     title: favorite.title,
@@ -63,7 +56,9 @@ export const FavoritesPage: React.FC<FavoritesPageProps> = ({ onMovieClick }) =>
     if (onMovieClick) {
       onMovieClick(movie)
     } else {
-      openMovieDetails(movie.id)
+      navigate(`/movie/${movie.id}`, {
+        state: { backgroundLocation: location }
+      })
     }
   }
 
@@ -129,39 +124,6 @@ export const FavoritesPage: React.FC<FavoritesPageProps> = ({ onMovieClick }) =>
           </p>
         </div>
       )}
-
-      <Modal isOpen={isModalOpen} onClose={closeMovieDetails}>
-        {movieDetails ? (
-          <MovieDetails
-            movie={movieDetails}
-            isFavorite={selectedMovieId ? isFavorite(selectedMovieId) : false}
-            onToggleFavorite={() => {
-              if (movieDetails) {
-                const movie: Movie = {
-                  id: movieDetails.id,
-                  title: movieDetails.title,
-                  poster_path: movieDetails.poster_path,
-                  release_date: movieDetails.release_date,
-                  vote_average: movieDetails.vote_average,
-                  overview: movieDetails.overview,
-                  backdrop_path: movieDetails.backdrop_path,
-                  genre_ids: movieDetails.genres?.map(g => g.id) || [],
-                  adult: movieDetails.adult,
-                  original_language: movieDetails.original_language,
-                  original_title: movieDetails.original_title,
-                  popularity: movieDetails.popularity,
-                  video: movieDetails.video,
-                  vote_count: movieDetails.vote_count,
-                }
-                toggleMovieFavorite(movie)
-              }
-            }}
-            onClose={closeMovieDetails}
-          />
-        ) : (
-          <div>Ładowanie szczegółów filmu...</div>
-        )}
-      </Modal>
       
       <ConfirmationModal
         isOpen={isConfirmModalOpen}

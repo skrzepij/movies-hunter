@@ -1,9 +1,9 @@
 import React from 'react'
 
+import { useNavigate, useLocation } from 'react-router-dom'
+
 import styles from './HomePage.module.scss'
 import { Button } from '../../components/Button/Button'
-import { Modal } from '../../components/Modal/Modal'
-import { MovieDetails } from '../../components/MovieDetails/MovieDetails'
 import { MovieGrid } from '../../components/MovieGrid/MovieGrid'
 import { PageLayout } from '../../components/PageLayout/PageLayout'
 import { Pagination } from '../../components/Pagination/Pagination'
@@ -11,7 +11,6 @@ import { SearchBar } from '../../components/SearchBar/SearchBar'
 import { useApiPagination } from '../../hooks/useApiPagination'
 import { useFavoritesManager } from '../../hooks/useFavorites'
 import { useMovieCategories } from '../../hooks/useMovieCategories'
-import { useMovieModal } from '../../hooks/useMovieModal'
 import { useMovieSearch } from '../../hooks/useMovieSearch'
 
 import type { Movie } from '../../types/movie'
@@ -21,6 +20,8 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onMovieClick }) => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const { currentPage, handlePageChange, resetToFirstPage } = useApiPagination()
   
   const { 
@@ -35,14 +36,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onMovieClick }) => {
   
   const { isFavorite, toggleMovieFavorite } = useFavoritesManager()
   const { selectedCategory, categoryData, setSelectedCategory } = useMovieCategories(currentPage)
-  
-  const {
-    selectedMovieId,
-    movieDetails,
-    isModalOpen,
-    openMovieDetails,
-    closeMovieDetails,
-  } = useMovieModal()
 
   // Event handlers
   const handleCategoryChange = (category: typeof selectedCategory) => {
@@ -54,29 +47,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onMovieClick }) => {
     if (onMovieClick) {
       onMovieClick(movie)
     } else {
-      openMovieDetails(movie.id)
-    }
-  }
-
-  const handleToggleFavoriteForModal = () => {
-    if (movieDetails) {
-      const movie: Movie = {
-        id: movieDetails.id,
-        title: movieDetails.title,
-        poster_path: movieDetails.poster_path,
-        release_date: movieDetails.release_date,
-        vote_average: movieDetails.vote_average,
-        overview: movieDetails.overview,
-        backdrop_path: movieDetails.backdrop_path,
-        genre_ids: movieDetails.genres?.map(g => g.id) || [],
-        adult: movieDetails.adult,
-        original_language: movieDetails.original_language,
-        original_title: movieDetails.original_title,
-        popularity: movieDetails.popularity,
-        video: movieDetails.video,
-        vote_count: movieDetails.vote_count,
-      }
-      toggleMovieFavorite(movie)
+      navigate(`/movie/${movie.id}`, {
+        state: { backgroundLocation: location }
+      })
     }
   }
 
@@ -111,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onMovieClick }) => {
         <SearchBar
           value={searchQuery}
           onChange={setSearchQuery}
-          placeholder="Wyszukaj tytuł produkcji..."
+          placeholder="Wpisz tytuł produkcji..."
         />
       </div>
 
@@ -175,19 +148,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onMovieClick }) => {
           </div>
         )}
       </div>
-
-      <Modal isOpen={isModalOpen} onClose={closeMovieDetails}>
-        {movieDetails ? (
-          <MovieDetails
-            movie={movieDetails}
-            isFavorite={selectedMovieId ? isFavorite(selectedMovieId) : false}
-            onToggleFavorite={handleToggleFavoriteForModal}
-            onClose={closeMovieDetails}
-          />
-        ) : (
-          <div>Ładowanie szczegółów filmu...</div>
-        )}
-      </Modal>
     </PageLayout>
   )
 }

@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 import { HomePage } from './HomePage';
@@ -271,26 +272,28 @@ const createTestStore = () => {
 describe('HomePage Component', () => {
   const mockOnMovieClick = vi.fn();
   
+  const renderWithRouter = (component: React.ReactElement) => {
+    return render(
+      <Provider store={createTestStore()}>
+        <BrowserRouter>
+          {component}
+        </BrowserRouter>
+      </Provider>
+    );
+  };
+  
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('renders without crashing', () => {
-    render(
-      <Provider store={createTestStore()}>
-        <HomePage onMovieClick={mockOnMovieClick} />
-      </Provider>
-    );
+    renderWithRouter(<HomePage onMovieClick={mockOnMovieClick} />);
     
     expect(screen.getByTestId('search-bar')).toBeInTheDocument();
   });
 
   it('displays movie grid with popular movies by default', () => {
-    render(
-      <Provider store={createTestStore()}>
-        <HomePage onMovieClick={mockOnMovieClick} />
-      </Provider>
-    );
+    renderWithRouter(<HomePage onMovieClick={mockOnMovieClick} />);
     
     expect(screen.getByTestId('movie-grid')).toBeInTheDocument();
     
@@ -298,11 +301,7 @@ describe('HomePage Component', () => {
   });
 
   it('calls onMovieClick when a movie is clicked', () => {
-    render(
-      <Provider store={createTestStore()}>
-        <HomePage onMovieClick={mockOnMovieClick} />
-      </Provider>
-    );
+    renderWithRouter(<HomePage onMovieClick={mockOnMovieClick} />);
     
     const movieElement = screen.getByText('Popular Movie 1');
     fireEvent.click(movieElement);
@@ -311,11 +310,7 @@ describe('HomePage Component', () => {
   });
 
   it('displays pagination component', () => {
-    render(
-      <Provider store={createTestStore()}>
-        <HomePage onMovieClick={mockOnMovieClick} />
-      </Provider>
-    );
+    renderWithRouter(<HomePage onMovieClick={mockOnMovieClick} />);
     
     expect(screen.getByTestId('pagination')).toBeInTheDocument();
   });
