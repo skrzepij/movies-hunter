@@ -121,22 +121,6 @@ export const tmdbApi = createApi({
       },
       providesTags: ['Movie'],
     }),
-
-    // Get upcoming movies
-    getUpcomingMovies: builder.query<ApiResponse<Movie>, { page?: number }>({
-      query: ({ page = DEFAULT_PARAMS.page } = {}) => {
-        // Validate page number - TMDb API has max 500 pages
-        const validPage = Math.max(1, Math.min(page, 500))
-        return {
-          url: API_ENDPOINTS.UPCOMING_MOVIES,
-          params: {
-            page: validPage,
-            language: DEFAULT_PARAMS.language,
-          },
-        }
-      },
-      providesTags: ['Movie'],
-    }),
   }),
 })
 
@@ -149,5 +133,4 @@ export const {
   useGetPopularMoviesQuery,
   useGetTopRatedMoviesQuery,
   useGetNowPlayingMoviesQuery,
-  useGetUpcomingMoviesQuery,
 } = tmdbApi

@@ -56,10 +56,8 @@ $xlarge: 1536px;    // Extra large screens and up
   --info: #3b82f6;
   
   /* Status colors RGB values for alpha compositing */
-  --success-rgb: 16, 185, 129;
-  --warning-rgb: 245, 158, 11;
   --error-rgb: 239, 68, 68;
-  --info-rgb: 59, 130, 246;
+  --warning-rgb: 245, 158, 11;
   
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -68,7 +66,6 @@ $xlarge: 1536px;    // Extra large screens and up
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
-  --spacing-3xl: 4rem;
   
   /* Typography - wszystkie rozmiary w rem dla łatwego skalowania */
   --font-xs: 0.75rem;    /* 12px przy html font-size: 16px */
@@ -101,12 +98,8 @@ $xlarge: 1536px;    // Extra large screens and up
   
   /* Z-index */
   --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
   --z-modal-backdrop: 1040;
   --z-modal: 1050;
-  --z-popover: 1060;
-  --z-tooltip: 1070;
   
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -118,14 +111,12 @@ $xlarge: 1536px;    // Extra large screens and up
   --bp-tablet: 768px;
   --bp-desktop: 1024px;
   --bp-large: 1280px;
-  --bp-xlarge: 1536px;
   
   /* Media Query Breakpoints (for SCSS @media usage) */
   --mq-mobile-max: 767px;        /* max-width for mobile */
   --mq-tablet-min: 768px;        /* min-width for tablet */
   --mq-tablet-max: 1023px;       /* max-width for tablet */
   --mq-desktop-min: 1024px;      /* min-width for desktop */
-  --mq-large-desktop-min: 1280px; /* min-width for large desktop */
 }
 
 

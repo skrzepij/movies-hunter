@@ -76,50 +76,6 @@ export const formatVoteAverage = (voteAverage: Rating): string => {
 }
 
 /**
- * Truncates text to specified length with ellipsis
- * @param text - Text to truncate
- * @param maxLength - Maximum length (must be positive)
- * @returns Truncated text with ellipsis if needed
- */
-export const truncateText = (text: string, maxLength: number): string => {
-  if (maxLength <= 0) {
-    throw new Error('maxLength must be a positive number')
-  }
-  if (text.length <= maxLength) return text
-  return `${text.substring(0, maxLength)}...`
-}
-
-/**
- * Debounce function for search input with proper generic typing
- * @param func - Function to debounce
- * @param delay - Delay in milliseconds (must be positive)
- * @returns Debounced function
- */
-export const debounce = <TArgs extends unknown[]>(
-  func: (...args: TArgs) => void,
-  delay: number
-): ((...args: TArgs) => void) => {
-  if (delay <= 0) {
-    throw new Error('Delay must be a positive number')
-  }
-  
-  let timeoutId: ReturnType<typeof setTimeout>
-  
-  return (...args: TArgs): void => {
-    clearTimeout(timeoutId)
-    timeoutId = setTimeout(() => func(...args), delay)
-  }
-}
-
-/**
- * Gets the current year for copyright and other uses
- * @returns Current year as number
- */
-export const getCurrentYear = (): number => {
-  return new Date().getFullYear()
-}
-
-/**
  * Formats currency values in USD
  * @param amount - Amount to format (must be positive)
  * @returns Formatted currency string
@@ -133,48 +89,6 @@ export const formatCurrency = (amount: number | null | undefined): string => {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount)
-}
-
-/**
- * Type guard to check if a value is a valid movie ID
- * @param value - Value to check
- * @returns True if value is a valid movie ID
- */
-export const isValidMovieId = (value: unknown): value is number => {
-  return typeof value === 'number' && value > 0 && Number.isInteger(value)
-}
-
-/**
- * Type guard to check if a string is a valid ISO date
- * @param value - Value to check
- * @returns True if value is a valid ISO date string
- */
-export const isValidDateString = (value: string): value is DateString => {
-  if (!value) return false
-  const date = new Date(value)
-  return !isNaN(date.getTime()) && value.includes('-')
-}
-
-/**
- * Safe number parsing with validation
- * @param value - Value to parse
- * @param defaultValue - Default value if parsing fails
- * @returns Parsed number or default value
- */
-export const safeParseNumber = (
-  value: unknown, 
-  defaultValue: number = 0
-): number => {
-  if (typeof value === 'number' && !isNaN(value)) {
-    return value
-  }
-  if (typeof value === 'string') {
-    const parsed = Number(value)
-    if (!isNaN(parsed)) {
-      return parsed
-    }
-  }
-  return defaultValue
 }
 
 /**

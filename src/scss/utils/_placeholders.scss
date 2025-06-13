@@ -76,35 +76,3 @@
     box-shadow: var(--shadow-md);
   }
 }
-
-// Text utilities
-%text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-// Modal/overlay styles
-%overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--bg-overlay);
-  backdrop-filter: blur(4px);
-  z-index: var(--z-modal-backdrop);
-}
-
-// Accessibility
-%visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}

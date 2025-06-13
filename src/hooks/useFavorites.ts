@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 
-import { useAppDispatch, useFavorites, useIsFavorite } from './redux'
+import { useAppDispatch, useFavorites } from './redux'
 import { loadFavorites, toggleFavorite, clearFavorites } from '../store/favoritesSlice'
 
 import type { Movie, FavoriteMovie } from '../types/movie'
@@ -55,11 +55,4 @@ export const useFavoritesManager = (): UseFavoritesResult => {
     clearAllFavorites,
     loadFavoritesFromStorage,
   }
-}
-
-/**
- * Hook to check if a specific movie is favorite (optimized for single movie)
- */
-export const useIsFavoriteMovie = (movieId: number): boolean => {
-  return useIsFavorite(movieId)
 }

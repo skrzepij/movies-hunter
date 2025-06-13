@@ -1,4 +1,3 @@
-@use '../utils/mixins' as mix;
 @use '../utils/placeholders';
 
 // Button base styles
@@ -46,31 +45,16 @@
   
   &--sm {
     padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: var(--font-xs);
+    font-size: var(--font-sm);
   }
   
   &--md {
     padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-sm);
+    font-size: var(--font-base);
   }
   
   &--lg {
     padding: var(--spacing-md) var(--spacing-lg);
-    font-size: var(--font-base);
-  }
-}
-
-.iconButton {
-  @extend %button-base;
-  @extend %flex-center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  background: transparent;
-  color: var(--text-secondary);
-  
-  &:hover:not(:disabled) {
-    background: var(--bg-secondary);
-    color: var(--text-primary);
+    font-size: var(--font-lg);
   }
 }

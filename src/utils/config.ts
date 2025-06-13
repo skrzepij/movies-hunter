@@ -50,8 +50,7 @@ export const API_ENDPOINTS = {
   MOVIE_DETAILS: '/movie',
   POPULAR_MOVIES: '/movie/popular',
   TOP_RATED_MOVIES: '/movie/top_rated',
-  NOW_PLAYING_MOVIES: '/movie/now_playing',
-  UPCOMING_MOVIES: '/movie/upcoming'
+  NOW_PLAYING_MOVIES: '/movie/now_playing'
 } as const
 
 export type ApiEndpoint = typeof API_ENDPOINTS[keyof typeof API_ENDPOINTS]
@@ -67,8 +66,7 @@ export const DEFAULT_PARAMS = {
 export const MOVIE_CATEGORIES = {
   POPULAR: 'popular',
   TOP_RATED: 'top_rated', 
-  NOW_PLAYING: 'now_playing',
-  UPCOMING: 'upcoming'
+  NOW_PLAYING: 'now_playing'
 } as const
 
 export type MovieCategory = typeof MOVIE_CATEGORIES[keyof typeof MOVIE_CATEGORIES]

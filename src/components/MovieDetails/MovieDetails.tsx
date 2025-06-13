@@ -28,7 +28,7 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
         <img
           className={styles.moviePoster}
           src={posterUrl}
-          alt={`${movie.title} poster`}
+          alt={`${movie.title} plakat`}
           onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
             const target = e.target as HTMLImageElement
             target.src = '/placeholder-movie.svg'
@@ -130,7 +130,7 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
           <img
             className={styles.backdropImage}
             src={backdropUrl}
-            alt={`${movie.title} backdrop`}
+            alt={`${movie.title} tło`}
             onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
               const target = e.target as HTMLImageElement
               target.style.display = 'none'
