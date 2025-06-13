@@ -1,0 +1,72 @@
+@use '../../scss/utils/mixins' as mix;
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-md);
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  max-height: 90vh;
+  max-width: 90vw;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  
+  /* Custom scrollbar */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--border-dark);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  background: var(--bg-secondary);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text-primary);
+  z-index: 1;
+  
+  &:hover {
+    background: var(--border);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}

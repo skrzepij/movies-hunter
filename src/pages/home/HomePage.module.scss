@@ -1,0 +1,65 @@
+@use '../../scss/utils/placeholders';
+@use '../../scss/base/variables' as vars;
+
+.searchSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, #8395e5 0%, #9d79c1 100%);
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  @media (min-width: vars.$tablet) {
+    padding: var(--spacing-2xl);
+  }
+}
+
+.searchTitle {
+  font-size: var(--font-3xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.categoryTabs {
+  @extend %flex-center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  @media (min-width: vars.$tablet) {
+    gap: var(--spacing-md);
+  }
+}
+
+.resultsSection {
+  margin-top: var(--spacing-xl);
+}
+
+.sectionTitle {
+  font-size: var(--font-3xl);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.paginationSection {
+  margin-top: var(--spacing-xl);
+  display: flex;
+  justify-content: center;
+}

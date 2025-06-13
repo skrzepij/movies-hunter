@@ -1,0 +1,76 @@
+@use '../utils/mixins' as mix;
+@use '../utils/placeholders';
+
+// Button base styles
+.button {
+  @extend %button-base;
+  
+  &--primary {
+    background: var(--primary);
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+  }
+  
+  &--secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+    
+    &:hover:not(:disabled) {
+      background: var(--bg-tertiary);
+      border-color: var(--border-dark);
+    }
+  }
+  
+  &--ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    
+    &:hover:not(:disabled) {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+  }
+  
+  &--danger {
+    background: var(--error);
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background: #dc2626;
+    }
+  }
+  
+  &--sm {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-xs);
+  }
+  
+  &--md {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-sm);
+  }
+  
+  &--lg {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-base);
+  }
+}
+
+.iconButton {
+  @extend %button-base;
+  @extend %flex-center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  
+  &:hover:not(:disabled) {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+}

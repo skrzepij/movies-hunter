@@ -1,0 +1,62 @@
+@use '../../scss/utils/placeholders';
+@use '../../scss/base/variables' as vars;
+
+.pagination {
+  @extend %flex-center;
+  flex-wrap: wrap;
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  gap: var(--spacing-xs);
+}
+
+.pageButton {
+  @extend %button-base;
+  min-width: 40px;
+  height: 40px;
+  padding: var(--spacing-xs);
+  margin: 0 2px;
+  border-radius: var(--radius-md);
+  font-weight: 400;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  
+  &:hover:not(:disabled) {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+  
+  &.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+    font-weight: 600;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.pageInfo {
+  display: none;
+  margin: 0 var(--spacing-md);
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  font-size: var(--font-sm);
+  
+  @media (min-width: vars.$tablet) {
+    display: block;
+  }
+}
+
+.ellipsis {
+  padding: 0 var(--spacing-xs);
+  color: var(--text-secondary);
+  font-weight: 500;
+}

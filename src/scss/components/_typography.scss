@@ -1,0 +1,90 @@
+@use '../base/variables' as vars;
+
+.heading {
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  
+  &--1 {
+    font-size: var(--font-4xl);
+  }
+  
+  &--2 {
+    font-size: var(--font-3xl);
+  }
+  
+  &--3 {
+    font-size: var(--font-2xl);
+  }
+  
+  &--4 {
+    font-size: var(--font-xl);
+  }
+  
+  &--5 {
+    font-size: var(--font-lg);
+  }
+  
+  &--6 {
+    font-size: var(--font-base);
+  }
+}
+
+.text {
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  
+  &--xs {
+    font-size: var(--font-xs);
+  }
+  
+  &--sm {
+    font-size: var(--font-sm);
+  }
+  
+  &--base {
+    font-size: var(--font-base);
+  }
+  
+  &--lg {
+    font-size: var(--font-lg);
+  }
+  
+  &--xl {
+    font-size: var(--font-xl);
+  }
+  
+  // Colors
+  &--primary {
+    color: var(--text-primary);
+  }
+  
+  &--secondary {
+    color: var(--text-secondary);
+  }
+  
+  &--muted {
+    color: var(--text-muted);
+  }
+  
+  &--inverse {
+    color: var(--text-inverse);
+  }
+  
+  // Weights
+  &--normal {
+    font-weight: 400;
+  }
+  
+  &--medium {
+    font-weight: 500;
+  }
+  
+  &--semibold {
+    font-weight: 600;
+  }
+  
+  &--bold {
+    font-weight: 700;
+  }
+}

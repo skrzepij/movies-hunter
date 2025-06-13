@@ -1,0 +1,58 @@
+@use '../../scss/utils/placeholders';
+@use '../../scss/base/variables' as vars;
+
+.header {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-light);
+  padding: var(--spacing-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-dropdown);
+}
+
+.content {
+  @extend %container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  @media (min-width: vars.$tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+
+.logo {
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.nav {
+  @extend %flex-center;
+  gap: var(--spacing-md);
+}
+
+.navLink {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  
+  &:hover {
+    color: var(--primary);
+    background-color: var(--primary-light);
+  }
+  
+  &.active {
+    color: var(--primary);
+    background-color: var(--primary-light);
+    font-weight: 600;
+  }
+}
