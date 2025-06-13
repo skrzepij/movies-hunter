@@ -11,6 +11,7 @@ interface MovieDetailsProps {
   isFavorite: boolean
   onToggleFavorite: () => void
   onClose: () => void
+  variant?: 'modal' | 'page'
 }
 
 export const MovieDetails: React.FC<MovieDetailsProps> = ({
@@ -18,12 +19,13 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
   isFavorite,
   onToggleFavorite,
   onClose,
+  variant = 'modal',
 }) => {
   const posterUrl = getFullImageUrl(movie.poster_path, 'w500')
   const backdropUrl = getFullImageUrl(movie.backdrop_path, 'w1280')
 
   return (
-    <div className={styles.detailsContainer}>
+    <div className={`${styles.detailsContainer} ${variant === 'page' ? styles.pageVariant : ''}`}>
       <div className={styles.flexContainer}>
         <img
           className={styles.moviePoster}
