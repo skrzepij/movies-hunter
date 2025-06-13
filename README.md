@@ -18,6 +18,7 @@ Modern React.js application for movie discovery with favorites management. Built
 - Movie search with debounced input and pagination
 - Browse movie categories (Popular, Top Rated, Now Playing)
 - Detailed movie modal with more details
+- Smart routing - modal overlay for browsing, dedicated pages for direct links
 - Favorites management with localStorage
 - Responsive design with mobile-first approach
 - Error handling and loading states
