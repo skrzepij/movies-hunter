@@ -28,8 +28,7 @@ export const tmdbApi = createApi({
     },
   }),
   tagTypes: ['Movie', 'MovieDetails'] as const,
-  endpoints: (builder) => ({
-    // Search movies by query
+  endpoints: (builder) => ({    
     searchMovies: builder.query<SearchMoviesResponse, SearchMoviesParams>({
       query: ({ query, page = DEFAULT_PARAMS.page }) => ({
         url: API_ENDPOINTS.SEARCH_MOVIES,

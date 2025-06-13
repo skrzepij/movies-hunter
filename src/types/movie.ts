@@ -6,7 +6,6 @@ export interface ApiResponse<T> {
   total_results: number
 }
 
-// Movie related types
 export interface Movie {
   id: number
   title: string
@@ -69,10 +68,8 @@ export interface SpokenLanguage {
   name: string
 }
 
-// Search related types
 export type SearchMoviesResponse = ApiResponse<Movie>
 
-// Favorites types
 export interface FavoriteMovie {
   id: number
   title: string
@@ -82,7 +79,6 @@ export interface FavoriteMovie {
   addedAt: string
 }
 
-// API Error types
 export interface ApiError {
   status_code: number
   status_message: string

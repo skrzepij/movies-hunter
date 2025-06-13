@@ -23,25 +23,6 @@
   overflow-y: auto;
   box-shadow: var(--shadow-lg);
   position: relative;
-  
-  /* Custom scrollbar */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb:hover {
-    background: var(--border-dark);
-  }
 }
 
 .closeButton {
@@ -62,7 +43,7 @@
   z-index: 1;
   
   &:hover {
-    background: var(--border);
+    background: var(--primary-light);
   }
   
   &:focus {

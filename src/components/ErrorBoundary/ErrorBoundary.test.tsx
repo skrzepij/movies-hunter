@@ -23,7 +23,6 @@ describe('ErrorBoundary Component', () => {
   })
 
   it('should render error fallback when there is an error', () => {
-    // Suppress console.error for this test
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
     
     render(
