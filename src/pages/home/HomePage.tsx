@@ -8,10 +8,10 @@ import { MovieGrid } from '../../components/MovieGrid/MovieGrid'
 import { PageLayout } from '../../components/PageLayout/PageLayout'
 import { Pagination } from '../../components/Pagination/Pagination'
 import { SearchBar } from '../../components/SearchBar/SearchBar'
-import { useApiPagination } from '../../hooks/useApiPagination'
 import { useFavoritesManager } from '../../hooks/useFavorites'
 import { useMovieCategories } from '../../hooks/useMovieCategories'
 import { useMovieSearch } from '../../hooks/useMovieSearch'
+import { usePagination } from '../../hooks/usePagination'
 
 import type { Movie } from '../../types/movie'
 
@@ -22,7 +22,7 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onMovieClick }) => {
   const navigate = useNavigate()
   const location = useLocation()
-  const { currentPage, handlePageChange, resetToFirstPage } = useApiPagination()
+  const { currentPage, handlePageChange, resetToFirstPage } = usePagination()
   
   const { 
     searchQuery, 

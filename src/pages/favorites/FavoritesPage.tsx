@@ -9,8 +9,8 @@ import { MovieGrid } from '../../components/MovieGrid/MovieGrid'
 import { PageHeader } from '../../components/PageHeader/PageHeader'
 import { PageLayout } from '../../components/PageLayout/PageLayout'
 import { Pagination } from '../../components/Pagination/Pagination'
-import { useClientPagination } from '../../hooks/useClientPagination'
 import { useFavoritesManager } from '../../hooks/useFavorites'
+import { usePagination } from '../../hooks/usePagination'
 
 import type { Movie, FavoriteMovie } from '../../types/movie'
 
@@ -49,8 +49,9 @@ export const FavoritesPage: React.FC<FavoritesPageProps> = ({ onMovieClick }) =>
     totalItems,
     paginatedItems: currentPageFavorites,
     handlePageChange,
-    hasPagination,
-  } = useClientPagination(convertedFavorites, 20)
+  } = usePagination(convertedFavorites, { itemsPerPage: 20 })
+
+  const hasPagination = totalPages > 1
 
   const handleMovieClick = (movie: Movie) => {
     if (onMovieClick) {

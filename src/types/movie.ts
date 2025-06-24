@@ -78,23 +78,3 @@ export interface FavoriteMovie {
   vote_average: number
   addedAt: string
 }
-
-export interface ApiError {
-  status_code: number
-  status_message: string
-  success: false
-}
-
-export interface RTKQueryError {
-  status: number | 'FETCH_ERROR' | 'PARSING_ERROR' | 'TIMEOUT_ERROR' | 'CUSTOM_ERROR'
-  error?: string
-  data?: ApiError
-}
-
-// Utility types for better type safety and IDE support
-export type Rating = number // 0-10 scale from TMDb
-export type DateString = string // ISO date string format
-export type MovieId = number
-
-// Re-export image size types from config for convenience
-export type { PosterSizeValue, BackdropSizeValue } from '../utils/config'

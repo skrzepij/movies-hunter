@@ -204,8 +204,8 @@ vi.mock('../../hooks/useFavorites', () => ({
   }))
 }));
 
-vi.mock('../../hooks/useApiPagination', () => ({
-  useApiPagination: vi.fn(() => ({
+vi.mock('../../hooks/usePagination', () => ({
+  usePagination: vi.fn(() => ({
     currentPage: 1,
     handlePageChange: vi.fn(),
     resetToFirstPage: vi.fn()

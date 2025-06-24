@@ -5,22 +5,10 @@ import { loadFavorites, toggleFavorite, clearFavorites } from '../store/favorite
 
 import type { Movie, FavoriteMovie } from '../types/movie'
 
-interface UseFavoritesResult {
-  favorites: FavoriteMovie[]
-  isFavorite: (movieId: number) => boolean
-  toggleMovieFavorite: (movie: Movie) => void
-  clearAllFavorites: () => void
-  loadFavoritesFromStorage: () => void
-}
-
-/**
- * Custom hook for managing favorite movies
- */
-export const useFavoritesManager = (): UseFavoritesResult => {
+export const useFavoritesManager = () => {
   const dispatch = useAppDispatch()
   const favorites = useFavorites()
 
-  // Load favorites from localStorage on hook initialization
   useEffect(() => {
     dispatch(loadFavorites())
   }, [dispatch])
@@ -44,15 +32,10 @@ export const useFavoritesManager = (): UseFavoritesResult => {
     dispatch(clearFavorites())
   }, [dispatch])
 
-  const loadFavoritesFromStorage = useCallback(() => {
-    dispatch(loadFavorites())
-  }, [dispatch])
-
   return {
     favorites,
     isFavorite,
     toggleMovieFavorite,
     clearAllFavorites,
-    loadFavoritesFromStorage,
   }
 }

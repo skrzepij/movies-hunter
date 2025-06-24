@@ -6,9 +6,7 @@ import type { TypedUseSelectorHook } from 'react-redux'
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
-// Selector hooks for common state access patterns
 export const useFavorites = () => useAppSelector((state) => state.favorites.favorites)
-export const useFavoritesLoading = () => useAppSelector((state) => state.favorites.isLoading)
-export const useFavoritesError = () => useAppSelector((state) => state.favorites.error)
-export const useIsFavorite = (movieId: number) => 
-  useAppSelector((state) => state.favorites.favorites.some(fav => fav.id === movieId))
+export const useSearchQuery = () => useAppSelector((state) => state.search.query)
+export const useSearchPage = () => useAppSelector((state) => state.search.currentPage)
+export const useSelectedCategory = () => useAppSelector((state) => state.search.selectedCategory)
