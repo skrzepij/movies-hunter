@@ -88,12 +88,9 @@ export const tmdbApi = createApi({
   }),
 })
 
-// Export hooks for usage in components
 export const {
   useSearchMoviesQuery,
-  useLazySearchMoviesQuery,
   useGetMovieDetailsQuery,
-  useLazyGetMovieDetailsQuery,
   useGetPopularMoviesQuery,
   useGetTopRatedMoviesQuery,
   useGetNowPlayingMoviesQuery,

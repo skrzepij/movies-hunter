@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { describe, it, expect } from 'vitest'
 
 import { Header } from './Header'
-import { store } from '../../store/index'
+import { store } from '../../store'
 
 const renderWithProviders = (component: React.ReactElement) => {
   return render(
