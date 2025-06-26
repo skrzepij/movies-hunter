@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-import { favoritesStorage } from '../utils/localStorage'
+import { favoritesService } from '../services/favoritesService'
 
 import type { FavoriteMovie } from '../types/movie'
 
@@ -27,7 +27,7 @@ export const favoritesSlice = createSlice({
       state.isLoading = true
       state.error = null
       try {
-        state.favorites = favoritesStorage.getFavorites()
+        state.favorites = favoritesService.getFavorites()
       } catch (error) {
         state.error = error instanceof Error ? error.message : 'Failed to load favorites'
       } finally {
@@ -45,14 +45,14 @@ export const favoritesSlice = createSlice({
           addedAt: new Date().toISOString()
         }
         state.favorites.push(favoriteMovie)
-        favoritesStorage.addFavorite(movie)
+        favoritesService.setFavorites(state.favorites)
       }
     },
 
     removeFavorite: (state, action: PayloadAction<number>) => {
       const movieId = action.payload
       state.favorites = state.favorites.filter(fav => fav.id !== movieId)
-      favoritesStorage.removeFavorite(movieId)
+      favoritesService.setFavorites(state.favorites)
     },
 
     toggleFavorite: (state, action: PayloadAction<Omit<FavoriteMovie, 'addedAt'>>) => {
@@ -61,40 +61,27 @@ export const favoritesSlice = createSlice({
       
       if (existingIndex >= 0) {
         state.favorites.splice(existingIndex, 1)
-        favoritesStorage.removeFavorite(movie.id)
       } else {
         const favoriteMovie: FavoriteMovie = {
           ...movie,
           addedAt: new Date().toISOString()
         }
         state.favorites.push(favoriteMovie)
-        favoritesStorage.addFavorite(movie)
       }
+      favoritesService.setFavorites(state.favorites)
     },
 
     clearFavorites: (state) => {
       state.favorites = []
-      favoritesStorage.clearAllFavorites()
-    },
-
-    setError: (state, action: PayloadAction<string>) => {
-      state.error = action.payload
-    },
-
-    clearError: (state) => {
-      state.error = null
+      favoritesService.clearAllFavorites()
     },
   },
 })
 
 export const {
   loadFavorites,
-  addFavorite,
-  removeFavorite,
   toggleFavorite,
   clearFavorites,
-  setError,
-  clearError,
 } = favoritesSlice.actions
 
 export default favoritesSlice.reducer

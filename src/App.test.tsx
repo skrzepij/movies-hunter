@@ -15,13 +15,11 @@ vi.mock('./services/tmdbApi', () => ({
     isLoading: false,
     error: null,
   })),
-  useLazySearchMoviesQuery: vi.fn(() => [vi.fn(), { data: undefined, isLoading: false }]),
   useGetMovieDetailsQuery: vi.fn(() => ({
     data: undefined,
     isLoading: false,
     error: null,
   })),
-  useLazyGetMovieDetailsQuery: vi.fn(() => [vi.fn(), { data: undefined, isLoading: false }]),
   useGetPopularMoviesQuery: vi.fn(() => ({
     data: undefined,
     isLoading: false,

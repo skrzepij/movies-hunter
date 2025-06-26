@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -8,6 +9,7 @@ import { HomePage } from './HomePage';
 import { favoritesSlice } from '../../store/favoritesSlice';
 
 import type { Movie } from '../../types/movie';
+
 
 vi.mock('../../styles/components', () => ({
   Container: 'div',
@@ -204,8 +206,8 @@ vi.mock('../../hooks/useFavorites', () => ({
   }))
 }));
 
-vi.mock('../../hooks/useApiPagination', () => ({
-  useApiPagination: vi.fn(() => ({
+vi.mock('../../hooks/usePagination', () => ({
+  usePagination: vi.fn(() => ({
     currentPage: 1,
     handlePageChange: vi.fn(),
     resetToFirstPage: vi.fn()

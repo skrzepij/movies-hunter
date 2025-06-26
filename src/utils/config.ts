@@ -40,10 +40,8 @@ export const IMAGE_SIZES = {
   }
 } as const
 
-export type PosterSizeKey = keyof typeof IMAGE_SIZES.POSTER
-export type BackdropSizeKey = keyof typeof IMAGE_SIZES.BACKDROP
-export type PosterSizeValue = typeof IMAGE_SIZES.POSTER[PosterSizeKey]
-export type BackdropSizeValue = typeof IMAGE_SIZES.BACKDROP[BackdropSizeKey]
+export type PosterSizeValue = typeof IMAGE_SIZES.POSTER[keyof typeof IMAGE_SIZES.POSTER]
+export type BackdropSizeValue = typeof IMAGE_SIZES.BACKDROP[keyof typeof IMAGE_SIZES.BACKDROP]
 
 export const API_ENDPOINTS = {
   SEARCH_MOVIES: '/search/movie',
@@ -52,8 +50,6 @@ export const API_ENDPOINTS = {
   TOP_RATED_MOVIES: '/movie/top_rated',
   NOW_PLAYING_MOVIES: '/movie/now_playing'
 } as const
-
-export type ApiEndpoint = typeof API_ENDPOINTS[keyof typeof API_ENDPOINTS]
 
 // Default parameters with strict typing
 export const DEFAULT_PARAMS = {

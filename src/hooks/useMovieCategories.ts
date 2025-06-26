@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useMemo } from 'react'
 
 import {
   useGetPopularMoviesQuery,
@@ -7,8 +7,7 @@ import {
 } from '../services/tmdbApi'
 
 import type { Movie } from '../types/movie'
-
-export type MovieCategory = 'popular' | 'top_rated' | 'now_playing'
+import type { MovieCategory } from '../utils/config'
 
 interface CategoryData {
   movies: Movie[]
@@ -18,13 +17,7 @@ interface CategoryData {
   refetch: () => void
 }
 
-interface UseMovieCategoriesReturn {
-  selectedCategory: MovieCategory
-  categoryData: CategoryData
-  setSelectedCategory: (category: MovieCategory) => void
-}
-
-export const useMovieCategories = (page: number = 1): UseMovieCategoriesReturn => {
+export const useMovieCategories = (page: number = 1) => {
   const [selectedCategory, setSelectedCategory] = useState<MovieCategory>('popular')
 
   const {
@@ -57,7 +50,7 @@ export const useMovieCategories = (page: number = 1): UseMovieCategoriesReturn =
     return 'An error occurred'
   }
 
-  const getCategoryData = useCallback((): CategoryData => {
+  const categoryData = useMemo((): CategoryData => {
     switch (selectedCategory) {
       case 'top_rated':
         return {
@@ -103,7 +96,7 @@ export const useMovieCategories = (page: number = 1): UseMovieCategoriesReturn =
 
   return {
     selectedCategory,
-    categoryData: getCategoryData(),
+    categoryData,
     setSelectedCategory,
   }
 }
